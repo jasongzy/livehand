@@ -14,11 +14,11 @@
 import numpy as np
 import torch
 
-from torch_utils_eg3d.ops import upfirdn2d
-from torch_utils_eg3d import persistence
-from torch_utils_eg3d import misc
+from livehand.torch_utils_eg3d.ops import upfirdn2d
+from livehand.torch_utils_eg3d import persistence
+from livehand.torch_utils_eg3d import misc
 
-from models.networks_stylegan2 import Conv2dLayer, SynthesisLayer, ToRGBLayer, SynthesisBlock
+from livehand.models.networks_stylegan2 import Conv2dLayer, SynthesisLayer, ToRGBLayer, SynthesisBlock
 
 #----------------------------------------------------------------------------
 

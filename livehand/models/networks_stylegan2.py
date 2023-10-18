@@ -15,12 +15,12 @@ https://github.com/NVlabs/stylegan2/blob/master/training/networks_stylegan2.py""
 
 import numpy as np
 import torch
-from torch_utils_eg3d import misc
-from torch_utils_eg3d import persistence
-from torch_utils_eg3d.ops import conv2d_resample
-from torch_utils_eg3d.ops import upfirdn2d
-from torch_utils_eg3d.ops import bias_act
-from torch_utils_eg3d.ops import fma
+from livehand.torch_utils_eg3d import misc
+from livehand.torch_utils_eg3d import persistence
+from livehand.torch_utils_eg3d.ops import conv2d_resample
+from livehand.torch_utils_eg3d.ops import upfirdn2d
+from livehand.torch_utils_eg3d.ops import bias_act
+from livehand.torch_utils_eg3d.ops import fma
 
 #----------------------------------------------------------------------------
 
@@ -282,7 +282,7 @@ class SynthesisLayer(torch.nn.Module):
         resolution,                     # Resolution of this layer.
         kernel_size     = 3,            # Convolution kernel size.
         up              = 1,            # Integer upsampling factor.
-        use_noise       = True,         # Enable noise input?
+        use_noise       = False,         # Enable noise input?
         activation      = 'lrelu',      # Activation function: 'relu', 'lrelu', etc.
         resample_filter = [1,3,3,1],    # Low-pass filter to apply when resampling activations.
         conv_clamp      = None,         # Clamp the output of convolution layers to +-X, None = disable clamping.
@@ -307,7 +307,7 @@ class SynthesisLayer(torch.nn.Module):
         self.weight = torch.nn.Parameter(torch.randn([out_channels, in_channels, kernel_size, kernel_size]).to(memory_format=memory_format))
         if use_noise:
             # self.register_buffer('noise_const', torch.randn([resolution, resolution]))
-            self.register_buffer('noise_const', torch.randn([resolution[0], resolution[1]]))
+            self.register_buffer('noise_const', torch.randn([int(resolution[0]), int(resolution[1])]))
             self.noise_strength = torch.nn.Parameter(torch.zeros([]))
         self.bias = torch.nn.Parameter(torch.zeros([out_channels]))
 

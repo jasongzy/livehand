@@ -20,7 +20,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 from pathlib import Path
-from plyfile import PlyData, PlyElement
+try:
+    from plyfile import PlyData, PlyElement
+except ImportError:
+    pass
 from tqdm import tqdm
 from fairnr.data.data_utils import load_matrix
 from fairnr.data import geometry

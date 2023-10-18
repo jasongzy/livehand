@@ -17,7 +17,6 @@ import skimage.metrics
 import pylab as plt
 import fairseq.distributed_utils as du
 
-from plyfile import PlyData, PlyElement
 from fairseq.meters import StopwatchMeter
 
 def get_rank():    
@@ -321,6 +320,8 @@ def compute_psnr(p, t):
 
 
 def save_point_cloud(filename, xyz, rgb=None):
+    from plyfile import PlyData, PlyElement
+
     if rgb is None:
         vertex = np.array([(xyz[k, 0], xyz[k, 1], xyz[k, 2]) for k in range(xyz.shape[0])], 
             dtype=[('x', 'f4'), ('y', 'f4'), ('z', 'f4')])

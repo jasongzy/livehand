@@ -6,7 +6,7 @@
 from fairseq.optim.lr_scheduler import FairseqLRScheduler, register_lr_scheduler
 
 
-@register_lr_scheduler('exp')
+# @register_lr_scheduler('exp')
 class ExponentialSchedule(FairseqLRScheduler):
     """Decay the LR based on the inverse square root of the update number.
 
